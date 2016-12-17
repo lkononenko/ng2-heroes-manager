@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeroesManagerModule } from './heroes-manager/heroes-manager.module';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeroesManagerModule } from './heroes-manager/heroes-manager.module';
     HttpModule,
 
     // App modules
-    HeroesManagerModule
+    HeroesManagerModule,
+    ApiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

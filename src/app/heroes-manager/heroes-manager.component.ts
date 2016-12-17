@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HeroesManagerApi } from './api';
+import { ApiHeroesManagerService } from '../api/api-heroes-manager.service';
 
 @Component({
   selector: 'app-heroes-manager',
@@ -9,7 +9,7 @@ import { HeroesManagerApi } from './api';
 })
 export class HeroesManagerComponent implements OnInit {
 
-  constructor(private api: HeroesManagerApi) {
+  constructor(private api: ApiHeroesManagerService) {
     api.fetch(this.responseFromApi);
   }
 

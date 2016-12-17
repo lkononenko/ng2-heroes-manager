@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
-export class HeroesManagerApi {
+export class ApiHeroesManagerService {
 
   private data = [{
     name: 'Wolverine',
@@ -136,5 +136,6 @@ export class HeroesManagerApi {
       }
     }, 800);
   }
+
 
 }
