@@ -1,5 +1,16 @@
 @import "../app.variables.scss";
 
+.search-area {
+  background-color: $color_bg;
+  padding: 2rem 0 3rem;
+  border-top: 1px solid #e8ebeb;
+  border-bottom: 1px solid #e8ebeb;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
 .row {
   border-bottom: 1px solid #e8ebeb;
   margin: 0;

@@ -1,23 +1,39 @@
+<div class="search-area">
+  <div class="container">
+    <h2>Search Heroes</h2>
+    <p>Filter the heroes by name or origin</p>
+    <app-search placeholder="Enter a hero's name or origin"
+                (searchValueChanged)="filterHeroes($event)"
+                (searchReset)="resetSearch()">
+    </app-search>
+  </div>
+</div>
 <div class="container content">
   <h3>Heroes</h3>
-  <div class="row row_header">
-    <div class="col-md-2 col-xs-3"></div>
-    <div class="col-md-10 col-xs-9">
-      <div class="col-md-2">Name</div>
-      <div class="col-md-2">Origin</div>
-      <div class="col-md-2">Age</div>
-      <div class="col-md-3">Superpowers</div>
-      <div class="col-md-3">Weaknesses</div>
+  <div *ngIf="filteredHeroes && filteredHeroes.length > 0">
+    <p>Amount: {{filteredHeroes.length}}</p>
+    <div class="row row_header">
+      <div class="col-md-2 col-xs-3"></div>
+      <div class="col-md-10 col-xs-9">
+        <div class="col-md-2">Name</div>
+        <div class="col-md-2">Origin</div>
+        <div class="col-md-2">Age</div>
+        <div class="col-md-3">Superpowers</div>
+        <div class="col-md-3">Weaknesses</div>
+      </div>
+    </div>
+    <div class="row" *ngFor="let hero of filteredHeroes">
+      <div class="col-md-2 col-xs-3 col-img"><img src="{{hero.image}}" /></div>
+      <div class="col-md-10 col-xs-9">
+        <div class="col-md-2">{{hero.name}}</div>
+        <div class="col-md-2">{{hero.origin}}</div>
+        <div class="col-md-2">{{hero.age}}</div>
+        <div class="col-md-3">{{hero.superpowers}}</div>
+        <div class="col-md-3">{{hero.weaknesses}}</div>
+      </div>
     </div>
   </div>
-  <div class="row" *ngFor="let hero of heroes">
-    <div class="col-md-2 col-xs-3 col-img"><img src="{{hero.image}}" /></div>
-    <div class="col-md-10 col-xs-9">
-      <div class="col-md-2">{{hero.name}}</div>
-      <div class="col-md-2">{{hero.origin}}</div>
-      <div class="col-md-2">{{hero.age}}</div>
-      <div class="col-md-3">{{hero.superpowers}}</div>
-      <div class="col-md-3">{{hero.weaknesses}}</div>
-    </div>
+  <div *ngIf="filteredHeroes && filteredHeroes.length == 0">
+    There are no heroes that match your search.
   </div>
 </div>
