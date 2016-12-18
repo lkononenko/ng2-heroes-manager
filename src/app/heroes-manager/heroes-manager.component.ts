@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiHeroesManagerService } from '../api/api-heroes-manager.service';
+import { HeroesManagerService } from './heroes-manager.service';
+import { Hero } from './hero.model';
 
 @Component({
   selector: 'app-heroes-manager',
@@ -9,19 +10,17 @@ import { ApiHeroesManagerService } from '../api/api-heroes-manager.service';
 })
 export class HeroesManagerComponent implements OnInit {
 
-  constructor(private api: ApiHeroesManagerService) {
-    api.fetch(this.responseFromApi);
-  }
+  heroes: Hero[];
+
+  constructor(private heroesManagerService: HeroesManagerService) { }
 
   ngOnInit() {
-  }
+    this.heroesManagerService.getHeroes();
 
-  private responseFromApi(error: Error, data?: any[]) {
-    if (!error) {
-      console.log(data);
-    } else {
-      console.log(error);
-    }
+    this.heroesManagerService.heroesGotten
+      .subscribe((heroes: Hero[]) => {
+          this.heroes = heroes;
+      });
   }
 
 }
