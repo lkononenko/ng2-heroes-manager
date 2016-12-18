@@ -1,0 +1,34 @@
+@import "../app.variables.scss";
+
+.row {
+  border-bottom: 1px solid #e8ebeb;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.row_header {
+  color: $color_brand;
+  background-color: $color_bg;
+}
+.col-img {
+  text-align: center;
+}
+.col-img img {
+  width: 100%;
+  max-width: 100px;
+}
+
+@media (max-width: 767px) {
+  .row_header {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  [class^="col-"] {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+  }
+  .col-md-2 {
+    width: 15.8%;
+  }
+}

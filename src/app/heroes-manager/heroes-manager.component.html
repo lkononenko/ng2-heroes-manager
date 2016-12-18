@@ -1,2 +1,23 @@
-<h2>Heroes</h2>
-<pre>{{ heroes | json }}</pre>
+<div class="container content">
+  <h3>Heroes</h3>
+  <div class="row row_header">
+    <div class="col-md-2 col-xs-3"></div>
+    <div class="col-md-10 col-xs-9">
+      <div class="col-md-2">Name</div>
+      <div class="col-md-2">Origin</div>
+      <div class="col-md-2">Age</div>
+      <div class="col-md-3">Superpowers</div>
+      <div class="col-md-3">Weaknesses</div>
+    </div>
+  </div>
+  <div class="row" *ngFor="let hero of heroes">
+    <div class="col-md-2 col-xs-3 col-img"><img src="{{hero.image}}" /></div>
+    <div class="col-md-10 col-xs-9">
+      <div class="col-md-2">{{hero.name}}</div>
+      <div class="col-md-2">{{hero.origin}}</div>
+      <div class="col-md-2">{{hero.age}}</div>
+      <div class="col-md-3">{{hero.superpowers}}</div>
+      <div class="col-md-3">{{hero.weaknesses}}</div>
+    </div>
+  </div>
+</div>
