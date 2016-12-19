@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsService } from 'angular2-notifications';
 
 import { HeroesManagerService } from './heroes-manager.service';
 import { Hero } from './hero.model';
@@ -20,7 +21,8 @@ export class HeroesManagerComponent implements OnInit {
 
   constructor(
     private heroesManagerService: HeroesManagerService,
-    private searchService: SearchService) { }
+    private searchService: SearchService,
+    private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.heroesManagerService.getHeroes(this.limit, this.offset);
@@ -36,6 +38,11 @@ export class HeroesManagerComponent implements OnInit {
             }
           }
       });
+
+    this.heroesManagerService.showErrorNotification
+      .subscribe(
+        () => this.notificationsService.error('', 'Sorry! Something went wrong, please, reload application.')
+      );
   }
 
   filterHeroes(searchValue) {

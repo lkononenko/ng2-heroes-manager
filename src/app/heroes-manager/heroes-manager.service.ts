@@ -12,6 +12,8 @@ export class HeroesManagerService {
   private static end: number;
   private static heroesGottenSubject = new BehaviorSubject<Hero[]>(HeroesManagerService.heroes);
   heroesGotten = HeroesManagerService.heroesGottenSubject.asObservable();
+  private static showErrorSubject = new Subject();
+  showErrorNotification = HeroesManagerService.showErrorSubject.asObservable();
 
   constructor(private api: ApiHeroesManagerService) { }
 
@@ -41,6 +43,7 @@ export class HeroesManagerService {
       }
     } else {
       console.log(error);
+      HeroesManagerService.showErrorSubject.next();
     }
   }
 }
