@@ -31,8 +31,8 @@ export class SearchComponent implements AfterContentInit {
   }
 
   resetInput() {
-      this.searchReset.emit(null);
-      this.string_input.nativeElement.value = '';
+    this.searchReset.emit(null);
+    this.string_input.nativeElement.value = '';
   }
 
 }

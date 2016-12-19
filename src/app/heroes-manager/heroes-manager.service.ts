@@ -8,19 +8,25 @@ import { Hero } from './hero.model';
 export class HeroesManagerService {
 
   private static heroes: Hero[];
+  private static start: number;
+  private static end: number;
   private static heroesGottenSubject = new BehaviorSubject<Hero[]>(HeroesManagerService.heroes);
   heroesGotten = HeroesManagerService.heroesGottenSubject.asObservable();
 
   constructor(private api: ApiHeroesManagerService) { }
 
-  getHeroes() {
+  getHeroes(limit: number, offset: number) {
+    HeroesManagerService.start = offset;
+    HeroesManagerService.end = offset + limit;
     return this.api.fetch(this.responseFromApi);
   }
 
   private responseFromApi(error: Error, data?: any[]) {
     if (!error) {
       if (data) {
-        let heroes = data.map(hero => new Hero(hero));
+        let heroes = data
+          .slice(HeroesManagerService.start, HeroesManagerService.end)
+          .map(hero => new Hero(hero));
         HeroesManagerService.heroesGottenSubject.next(heroes);
       }
     } else {

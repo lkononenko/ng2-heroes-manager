@@ -13,18 +13,27 @@ export class HeroesManagerComponent implements OnInit {
 
   private heroes: Hero[] = [];
   filteredHeroes: Hero[] = [];
+  limit: number = 5;
+  offset: number = 0;
+  all_loaded: boolean = false;
 
   constructor(
     private heroesManagerService: HeroesManagerService,
     private searchService: SearchService) { }
 
   ngOnInit() {
-    this.heroesManagerService.getHeroes();
+    this.heroesManagerService.getHeroes(this.limit, this.offset);
 
     this.heroesManagerService.heroesGotten
       .subscribe((heroes: Hero[]) => {
-          this.heroes = heroes;
-          this.filteredHeroes = this.heroes;
+          if (heroes) {
+            this.heroes = this.heroes.concat(heroes);
+            this.filteredHeroes = this.heroes;
+
+            if (heroes.length < this.limit) {
+              this.all_loaded = true;
+            }
+          }
       });
   }
 
@@ -35,6 +44,13 @@ export class HeroesManagerComponent implements OnInit {
 
   resetSearch() {
     this.filteredHeroes = this.heroes;
+  }
+
+  nextPage() {
+    if (!this.all_loaded) {
+      this.offset += this.limit;
+      this.heroesManagerService.getHeroes(this.limit, this.offset);
+    }
   }
 
 }

@@ -32,6 +32,9 @@
         <div class="col-md-3">{{hero.weaknesses}}</div>
       </div>
     </div>
+    <div class="load-more" *ngIf="!all_loaded">
+      <button class="btn btn-primary" (click)="nextPage()">Load more...</button>
+    </div>
   </div>
   <div *ngIf="filteredHeroes && filteredHeroes.length == 0">
     There are no heroes that match your search.
