@@ -16,6 +16,7 @@ export class HeroesManagerComponent implements OnInit {
   limit: number = 5;
   offset: number = 0;
   all_loaded: boolean = false;
+  favouriteHeroes: Hero[] = [];
 
   constructor(
     private heroesManagerService: HeroesManagerService,
@@ -50,6 +51,16 @@ export class HeroesManagerComponent implements OnInit {
     if (!this.all_loaded) {
       this.offset += this.limit;
       this.heroesManagerService.getHeroes(this.limit, this.offset);
+    }
+  }
+
+  changeFavourite(hero: Hero) {
+    if (hero.favourite) {
+      hero.favourite = false;
+      this.heroesManagerService.removeFromArray(hero, this.favouriteHeroes);
+    } else {
+      hero.favourite = true;
+      this.favouriteHeroes.push(hero);
     }
   }
 

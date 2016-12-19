@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-2 col-xs-3 col-img"><img src="{{hero.image}}" /></div>
+  <div class="col-md-10 col-xs-9">
+    <div class="col-md-2">{{hero.name}}</div>
+    <div class="col-md-2">{{hero.origin}}</div>
+    <div class="col-md-1">{{hero.age}}</div>
+    <div class="col-md-3">{{hero.superpowers}}</div>
+    <div class="col-md-3">{{hero.weaknesses}}</div>
+    <div class="col-md-1">
+      <button class="btn" (click)="changeFavourite(hero)">{{hero.favourite ? 'Remove' : 'Add'}}</button>
+    </div>
+  </div>
+</div>

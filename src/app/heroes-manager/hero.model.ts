@@ -7,6 +7,7 @@ export class Hero {
   superpowers: any[];
   weaknesses: any[];
   image: string;
+  favourite: boolean;
 
   constructor(hero) {
     this.name = hero.name,
@@ -15,5 +16,6 @@ export class Hero {
     this.superpowers = hero.superpowers || [];
     this.weaknesses = hero.weaknesses;
     this.image = CONST.imageUrl + (hero.image || CONST.imageDefault);
+    this.favourite = hero.favourite || false;
   }
 }

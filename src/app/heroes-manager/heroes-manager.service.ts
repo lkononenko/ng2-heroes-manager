@@ -21,6 +21,16 @@ export class HeroesManagerService {
     return this.api.fetch(this.responseFromApi);
   }
 
+  removeFromArray(item, array) {
+    var index = array.indexOf(item);
+
+    if (index > -1) {
+        array.splice(index, 1);
+        return array;
+    }
+    return false;
+  }
+
   private responseFromApi(error: Error, data?: any[]) {
     if (!error) {
       if (data) {

@@ -17,26 +17,28 @@
       <div class="col-md-10 col-xs-9">
         <div class="col-md-2">Name</div>
         <div class="col-md-2">Origin</div>
-        <div class="col-md-2">Age</div>
+        <div class="col-md-1">Age</div>
         <div class="col-md-3">Superpowers</div>
         <div class="col-md-3">Weaknesses</div>
+        <div class="col-md-1"></div>
       </div>
     </div>
-    <div class="row" *ngFor="let hero of filteredHeroes">
-      <div class="col-md-2 col-xs-3 col-img"><img src="{{hero.image}}" /></div>
-      <div class="col-md-10 col-xs-9">
-        <div class="col-md-2">{{hero.name}}</div>
-        <div class="col-md-2">{{hero.origin}}</div>
-        <div class="col-md-2">{{hero.age}}</div>
-        <div class="col-md-3">{{hero.superpowers}}</div>
-        <div class="col-md-3">{{hero.weaknesses}}</div>
-      </div>
-    </div>
+    <app-hero-row-view *ngFor="let hero of filteredHeroes"
+      [hero]="hero"
+      (changeFavouriteClicked)="changeFavourite($event)"
+    ></app-hero-row-view>
     <div class="load-more" *ngIf="!all_loaded">
       <button class="btn btn-primary" (click)="nextPage()">Load more...</button>
     </div>
   </div>
   <div *ngIf="filteredHeroes && filteredHeroes.length == 0">
     There are no heroes that match your search.
+  </div>
+  <div class="favourites" *ngIf="favouriteHeroes && favouriteHeroes.length > 0">
+    <h3>Favourites list</h3>
+      <app-hero-row-view *ngFor="let hero of favouriteHeroes"
+        [hero]="hero"
+        (changeFavouriteClicked)="changeFavourite($event)"
+      ></app-hero-row-view>
   </div>
 </div>
