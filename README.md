@@ -1,5 +1,7 @@
 # Angular2 Heroes Manager
 
+## Live Demo
+[Angular2 Heroes Manager](https://lkononenko.github.io/ng2-heroes-manager)
 
 ## Development server
 
